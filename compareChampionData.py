@@ -15,5 +15,4 @@ def compareChampionData():
     else:
         return("Gangplank has the highest base attack damage")
 
-if __name__ == "__main__":
-    print(compareChampionData())
+print(compareChampionData())
