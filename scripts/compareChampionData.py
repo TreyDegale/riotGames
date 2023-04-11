@@ -14,5 +14,3 @@ def compareChampionData():
         return("Aatrox has the highest base attack damage")
     else:
         return("Gangplank has the highest base attack damage")
-
-print(compareChampionData())
