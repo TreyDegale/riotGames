@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask
 import compareChampionData
 
 app = Flask(__name__)
