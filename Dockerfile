@@ -14,5 +14,7 @@ EXPOSE 8000
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
+RUN pytest
+
 # Run app.py when the container launches
-CMD ["python", "scripts/retrieveChampionData.py"]
+CMD ["python", "scripts/app.py"]
