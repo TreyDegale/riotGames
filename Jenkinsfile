@@ -12,5 +12,10 @@ pipeline {
                 sh 'docker run -dp 8000:8000 riotgames:0.0.1'
             }
         }
+        stage('Test') {
+            steps {
+                sh 'pytest'
+            }
+        }
     }
 }
