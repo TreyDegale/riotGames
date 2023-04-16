@@ -4,6 +4,8 @@ import os
 
 api_key = os.environ.get("RIOT_GAMES_KEY")
 
+print(api_key)
+
 watcher = LolWatcher(api_key)
 
 my_region = 'euw1'

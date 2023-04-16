@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Run') {
             steps {
-                sh 'docker run -dp 8000:8000 riotgames:0.0.1'
+                sh 'docker run -e RIOT_API_KEY=12345 -dp 8000:8000 riotgames:0.0.1'
             }
         }
         stage('Test') {
