@@ -5,7 +5,7 @@ FROM python:3.7-alpine
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-ADD scripts/ /app/scripts/
+COPY /scripts/ /app/scripts/
 COPY test_scripts.py /app/
 COPY requirements.txt /app/
 
@@ -15,4 +15,4 @@ EXPOSE 8000
 RUN pip install -r requirements.txt
 
 # Run app.py when the container launches
-CMD ["python", "/scripts/retrieveChampionData.py"]
+CMD ["python", "scripts/retrieveChampionData.py"]
