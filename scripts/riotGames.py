@@ -19,4 +19,4 @@ url = "https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?&api_ke
 response = requests.get(url)
 
 # Printing the response
-print(response.json())
+print(response.status_code)
