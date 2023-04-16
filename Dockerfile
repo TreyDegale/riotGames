@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy the current directory contents into the container at /app
 ADD scripts/ /app/scripts/
-COPY test_scripts/ /app/
+COPY test_scripts.py /app/
 COPY requirements.txt /app/
 
 EXPOSE 8000
