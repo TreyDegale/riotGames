@@ -19,5 +19,6 @@ aatrox = watcher.data_dragon.champions(champions_version)['data']['Aatrox']
 gangplank = watcher.data_dragon.champions(champions_version)['data']['Gangplank']
 
 if __name__ == "__main__":
+    print(api_key)
     print(aatrox)
     print(gangplank)
