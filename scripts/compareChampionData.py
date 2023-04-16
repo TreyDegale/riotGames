@@ -12,5 +12,5 @@ def compareChampionData():
     # Compare the base attack damage for each champion
     if aatroxBaseAttackDamage > gangplankBaseAttackDamage:
         return("Aatrox has the highest base attack damage")
-    else:
-        return("Gangplank has the highest base attack damage")
+    
+    return("Gangplank has the highest base attack damage")
