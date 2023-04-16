@@ -1,7 +1,8 @@
 # Importing the RiotWatcher library
 from riotwatcher import LolWatcher, ApiError
+import os
 
-api_key = "RGAPI-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+api_key = os.environ.get("RIOT_GAMES_KEY")
 
 watcher = LolWatcher(api_key)
 
