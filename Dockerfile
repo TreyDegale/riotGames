@@ -15,4 +15,4 @@ EXPOSE 8000
 RUN pip install -r requirements.txt
 
 # Run app.py when the container launches
-CMD ["python", "scripts/app.py"]
+CMD ["python", "/scripts/app.py"]
