@@ -7,7 +7,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t riotgames .'
+                sh 'docker build -t riotgames --target dev .'
+                sh 'docker build -t riotgames:test --target test .'
             }
         }
         stage('Run') {
@@ -17,7 +18,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                sh 'docker run -e API_KEY=$RIOT_API_KEY --rm riotgames:test'
             }
         }
     }
