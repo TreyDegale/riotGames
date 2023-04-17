@@ -1,18 +1,15 @@
-# Use an official Python runtime as a parent image
-FROM python:3.7-alpine
-
-# Set the working directory to /app
+FROM python:3.7-alpine as base
 WORKDIR /app
-
-# Copy the current directory contents into the container at /app
 COPY /scripts/ /app/scripts/
-COPY test_scripts.py /app/
+
+
+FROM base as dev
 COPY requirements.txt /app/
-
-EXPOSE 8000
-
-# Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
-
-# Run app.py when the container launches
+EXPOSE 8000
 CMD ["python", "scripts/app.py"]
+
+FROM base as test
+COPY test_scripts.py /app/
+RUN pip install pytest
+CMD ["pytest", "test_scripts.py"]
