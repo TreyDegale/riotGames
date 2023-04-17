@@ -11,5 +11,5 @@ CMD ["python", "scripts/app.py"]
 
 FROM base as test
 COPY test_scripts.py /app/
-RUN pip install pytest
+RUN pip install pytest riotwatcher
 CMD ["pytest", "test_scripts.py"]
