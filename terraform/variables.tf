@@ -2,7 +2,7 @@ variable "aws_key_pair" {
   type = string
 }
 
-varible "aws_access_key" {
+variable "aws_access_key" {
   type = string
 }
 
