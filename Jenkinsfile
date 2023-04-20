@@ -2,23 +2,17 @@ pipeline {
     agent any
 
     environment {
-        RIOT_API_KEY = credentials('RIOT_GAMES_API')
+        pem_file = credentials('flask-app-pem')
     }
     stages {
-        stage('Build') {
+        stage('terraform init') {
             steps {
-                sh 'docker build -t riotgames --target dev .'
-                sh 'docker build -t riotgames:test --target test .'
+                sh 'terraform init'
             }
         }
-        stage('Run') {
+        stage('terraform plan') {
             steps {
-                sh 'docker run -e API_KEY=$RIOT_API_KEY -p 8000:8000 --rm riotgames'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'docker run -e API_KEY=$RIOT_API_KEY --rm riotgames:test'
+                sh 'terraform plan -var aws_key_pair=${pem_file}'
             }
         }
     }
