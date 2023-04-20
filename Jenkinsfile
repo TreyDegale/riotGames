@@ -4,6 +4,9 @@ pipeline {
     environment {
         pem_file = credentials('flask-app-pem')
     }
+    tools {
+        terraform 'terraform'
+    }
     stages {
         stage('terraform init') {
             steps {
