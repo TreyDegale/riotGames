@@ -7,12 +7,12 @@ pipeline {
     stages {
         stage('terraform init') {
             steps {
-                sh './terraformw init'
+                sh 'terraform init'
             }
         }
         stage('terraform plan') {
             steps {
-                sh './terraformw plan -var aws_key_pair=${pem_file}'
+                sh 'terraform plan -var aws_key_pair=${pem_file}'
             }
         }
     }
