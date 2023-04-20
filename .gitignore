@@ -2,4 +2,8 @@
 .vscode/
 __pycache__/
 venv/
+rootkey.csv
+flask-app-ec2.pem
+.terraform
+.terraform.lock.hcl
 ```
