@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('terraform init') {
             steps {
-                sh 'cd terraform'
+                sh 'pwd'
                 sh 'terraform init'
             }
         }
