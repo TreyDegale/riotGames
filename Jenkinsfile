@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('ssh') {
             steps {
-                sh 'ssh -vvv -tt -i "~/aws/aws_keys/flask-app-ec2.pem" ec2-user@ec2-18-204-204-225.compute-1.amazonaws.com'
+                sh 'ssh -o StrictHostKeyChecking=no -i "~/aws/aws_keys/flask-app-ec2.pem" ec2-user@ec2-18-204-204-225.compute-1.amazonaws.com uptime'
             }
         }
         stage('mkdir') {
