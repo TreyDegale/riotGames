@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         RIOT_API_KEY = credentials('RIOT_GAMES_API')
-        flask_app_pem = credentials('flask-app-pem')
     }
     stages {
         stage('ssh') {
