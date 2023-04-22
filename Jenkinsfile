@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('ssh') {
             steps {
-                sh 'ssh -vvv -i ~/aws/aws_keys/flask-app-ec2.pem ubuntu@172.31.84.223'
+                sh 'ssh -vvv -i ~/aws/aws_keys/flask-app-ec2.pem ubuntu@18.204.204.225'
             }
         }
         stage('mkdir') {
