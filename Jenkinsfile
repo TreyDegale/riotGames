@@ -3,22 +3,17 @@ pipeline {
 
     environment {
         RIOT_API_KEY = credentials('RIOT_GAMES_API')
+        flask-app-pem = credentials('flask-app-pem')
     }
     stages {
-        stage('Build') {
+        stage('ssh') {
             steps {
-                sh 'docker build -t riotgames --target dev .'
-                sh 'docker build -t riotgames:test --target test .'
+                sh 'ssh -i $flask-app-ec2.pem ubuntu@ec2-18-204-204-225.compute-1.amazonaws.com'
             }
         }
-        stage('Run') {
+        stage('mkdir') {
             steps {
-                sh 'docker run -e API_KEY=$RIOT_API_KEY -p 8000:8000 --rm riotgames'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'docker run -e API_KEY=$RIOT_API_KEY --rm riotgames:test'
+                sh 'mkdir test-v1'
             }
         }
     }
