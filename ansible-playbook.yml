@@ -2,7 +2,7 @@
 - hosts: dev
   vars:
     os_environment:
-      - key: aPI_KEY_FINAL
+      - key: API_KEY_FINAL
         value : "{{ lookup('env', 'RIOT_GAMES_API') }}"
   tasks:
     - name: ensure git pkg installed
