@@ -1,7 +1,10 @@
 ---
 - hosts: dev
+  become: true
   tasks:
-    - name: Execute Shell Commands
-      shell: uname
-      register: uname_result
-    - debug: msg="{{ uname_result.stdout }}"
+    - yum:
+        name:
+          - httpd
+        state: present
+    - service: name=httpd state=started enabled=yes
+    - raw: "echo Welcome to Trey Degale | sudo tee /var/www/html/index.html"
