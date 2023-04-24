@@ -2,6 +2,7 @@
 - hosts: dev
   vars:
     sshkey: "/home/ec2-user/.ssh/authorized_keys"
+    API_KEY: lookup('env', RIOT_GAMES_API)
   tasks:
     - name: ensure git pkg installed
       ansible.builtin.yum:
@@ -17,14 +18,12 @@
         update_cache: yes
       become: true
     
-    - name: Example clone of a single branch
+    - name: clone repo
       ansible.builtin.git:
         repo: https://github.com/TreyDegale/riotGames.git
         dest: ~/riotGames
         clone: yes
 
-    - name: docker run
-      environment:
-        API_KEY: lookup('env', RIOT_GAMES_API)
-      shell: "docker run -e API_KEY=$API_KEY -p 8080:8080 -d riotgames:dev"
+    - name: docker build
+      shell: "docker run -e API_KEY={{ API_KEY }} -p 8080:8080 -d riotgames:dev"
       become: true
