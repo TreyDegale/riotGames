@@ -23,6 +23,6 @@
         dest: ~/riotGames
         clone: yes
 
-    - name: set environment variable
-      shell: "export NEW_ENV=\"{{ lookup('env', 'RIOT_GAMES_API') }}\""
-    - debug: msg="{{ lookup('env', 'RIOT_GAMES_API') }}"
+    - name: docker run
+      shell: "docker run -e RIOT_GAMES_API= {{ lookup('env', RIOT_GAMES_API) }} -p 8080:8080 -d riotgames:dev"
+      become: true
