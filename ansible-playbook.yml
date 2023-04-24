@@ -12,7 +12,6 @@
     
     - name: Example clone of a single branch
       ansible.builtin.git:
-        repo: git@github.com:TreyDegale/riotGames.git
+        repo: https://github.com/TreyDegale/riotGames.git
         dest: ~/riotGames
         clone: yes
-        key_file: "{{ sshkey }}"
