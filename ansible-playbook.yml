@@ -10,8 +10,19 @@
         update_cache: yes
       become: true
     
+    - name: install docker
+      ansible.builtin.yum:
+        name: docker
+        state: present
+        update_cache: yes
+      become: true
+    
     - name: Example clone of a single branch
       ansible.builtin.git:
         repo: https://github.com/TreyDegale/riotGames.git
         dest: ~/riotGames
         clone: yes
+
+    - name: set environment variable
+      ansible.builtin.shell:
+        echo "export RIOT_API_KEY=$RIOT_GAMES_API"
