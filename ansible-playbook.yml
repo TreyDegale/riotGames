@@ -1,9 +1,9 @@
 ---
 - hosts: dev
   tasks:
-  - name: Example clone of a single branch
-  ansible.builtin.git:
-    repo: git@github.com:TreyDegale/riotGames.git
-    dest: ~/riotGames
-    single_branch: yes
-    version: master
+    - name: Example clone of a single branch
+    ansible.builtin.git:
+      repo: git@github.com:TreyDegale/riotGames.git
+      dest: ~/riotGames
+      single_branch: yes
+      version: master
