@@ -25,4 +25,4 @@
 
     - name: set environment variable
       ansible.builtin.shell:
-        echo "export RIOT_API_KEY=$RIOT_GAMES_API"
+        echo "export RIOT_API_KEY={{ RIOT_GAMES_API }}"
