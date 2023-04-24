@@ -30,5 +30,3 @@
       ansible.builtin.pip:
         name: gunicorn
         state: present
-        update_cache: yes
-      become: true
