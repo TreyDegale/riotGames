@@ -1,6 +1,13 @@
 ---
 - hosts: dev
   tasks:
+    - name: ensure git pkg installed
+      ansible.builtin.yum:
+        name: git
+        state: present
+        update_cache: yes
+      become: true
+    
     - name: Example clone of a single branch
       ansible.builtin.git:
         repo: git@github.com:TreyDegale/riotGames.git
