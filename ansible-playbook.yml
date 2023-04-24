@@ -26,5 +26,4 @@
     - name: set environment variable
       ansible.builtin.shell:
         echo "export RIOT_API_KEY="{{ lookup('env', 'RIOT_GAMES_API') }}""
-      - debug:
-          msg: "{{ lookup('env', 'RIOT_GAMES_API') }}"
+    - debug: msg="{{ lookup('env', 'RIOT_GAMES_API') }}"
