@@ -24,5 +24,5 @@
         clone: yes
 
     - name: docker run
-      shell: "docker run -e RIOT_GAMES_API= {{ lookup('env', RIOT_GAMES_API) }} -p 8080:8080 -d riotgames:dev"
+      shell: "docker run -e API_KEY= {{ lookup('env', RIOT_GAMES_API) }} -p 8080:8080 -d riotgames:dev"
       become: true
