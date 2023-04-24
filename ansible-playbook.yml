@@ -16,13 +16,29 @@
         state: present
         update_cache: yes
       become: true
+
+    - name: install docker-compose
+      ansible.builtin.pip:
+        name: docker-compose
+        state: present
+        update_cache: yes
+      become: true
     
     - name: clone repo
       ansible.builtin.git:
         repo: https://github.com/TreyDegale/riotGames.git
         dest: ~/riotGames
         clone: yes
+        update: yes
 
-    - name: docker build
-      shell: "docker run -e API_KEY={{ API_KEY }} -p 8080:8080 -d riotgames:dev"
+    - name: docker-compose build
+      shell: "docker-compose build"
       become: true
+
+    - name: docker-compose up
+      shell: "docker-compose up -d"
+      become: true
+
+    # - name: docker build
+    #   shell: "docker run -e API_KEY={{ API_KEY }} -p 8080:8080 -d riotgames:dev"
+    #   become: true
