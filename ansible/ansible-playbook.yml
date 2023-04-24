@@ -27,11 +27,9 @@
         update: yes
 
     - name: docker-compose build
-      command:
-        chdir: /home/ec2-user/riotGames-ec2-final-steps
-        cmd: docker-compose build
-      become: true
+      community.docker.docker_compose:
+        project_src: ~/riotGames-ec2-final-steps
+        build: yes
 
     - name: docker-compose up
-      shell: "docker-compose up -d"
-      become: true
+      shell: "docker-compose up"
