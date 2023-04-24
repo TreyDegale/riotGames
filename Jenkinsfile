@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('ansible-playbook') {
             steps {
-                ansiblePlaybook credentialsId: 'ec2-ssh', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'ansible.inv', playbook: 'ansible-playbook.yml'
+                ansiblePlaybook credentialsId: 'linux-ami2', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'ansible.inv', playbook: 'ansible-playbook.yml'
             }
         }
     }
