@@ -2,7 +2,9 @@
 from riotwatcher import LolWatcher, ApiError
 import os
 
-api_key = os.environ["API_KEY"]
+# api_key = os.environ["API_KEY"]
+
+api_key = "RGA-2343E-2342E-2342E-2342E"
 
 watcher = LolWatcher(api_key)
 
