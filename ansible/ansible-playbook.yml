@@ -1,17 +1,12 @@
 ---
 - hosts: dev
   vars:
+   # environment variable vars
     os_environment:
       - key: API_KEY_FINAL
         value : "{{ lookup('env', 'RIOT_GAMES_API') }}"
   tasks:
-    - name: ensure git pkg installed
-      ansible.builtin.yum:
-        name: git
-        state: present
-        update_cache: yes
-      become: true
-
+    # environment variable task
     - name: populate /etc/environment
       lineinfile:
 
@@ -23,24 +18,12 @@
       with_items: "{{ os_environment }}"
       become: yes
     
-    - name: install docker
-      ansible.builtin.yum:
-        name: docker
-        state: present
-        update_cache: yes
-      become: true
-
-    - name: install docker-compose
-      ansible.builtin.pip:
-        name: docker-compose
-        state: present
-        update_cache: yes
-      become: true
-    
     - name: clone repo
       ansible.builtin.git:
         repo: https://github.com/TreyDegale/riotGames.git
         dest: ~/riotGames
+        # single_branch: yes
+        # version: ec2-final-steps
         clone: yes
         update: yes
 
@@ -51,7 +34,3 @@
     - name: docker-compose up
       shell: "docker-compose up -d"
       become: true
-
-    # - name: docker build
-    #   shell: "docker run -e API_KEY={{ API_KEY }} -p 8080:8080 -d riotgames:dev"
-    #   become: true
