@@ -5,7 +5,7 @@ WORKDIR /opt/
 COPY requirements.txt /opt/
 COPY scripts/ /opt/
 RUN pip install -r requirements.txt
-CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app:app", "--workers=5"]
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "app:app", "--workers=5"]
 
 # FROM base as test
 # WORKDIR /app
