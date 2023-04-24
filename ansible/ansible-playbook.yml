@@ -28,7 +28,7 @@
 
     - name: docker-compose build
       command:
-        chdir: ~/riotGames-ec2-final-steps
+        chdir: /home/ec2-user/riotGames-ec2-final-steps
         cmd: docker-compose build
       become: true
 
