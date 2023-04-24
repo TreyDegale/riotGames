@@ -5,5 +5,4 @@
       ansible.builtin.git:
         repo: git@github.com:TreyDegale/riotGames.git
         dest: ~/riotGames
-        single_branch: yes
-        version: master
+        clone: yes
