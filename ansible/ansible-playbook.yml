@@ -21,8 +21,7 @@
     - name: clone repo
       ansible.builtin.git:
         repo: https://github.com/TreyDegale/riotGames.git
-        dest: ~/riotGames
-        single_branch: yes
+        dest: ~/riotGames-ec2-final-steps
         version: ec2-final-steps
         clone: yes
         update: yes
