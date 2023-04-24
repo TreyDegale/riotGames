@@ -37,5 +37,5 @@
         clone: yes
 
     - name: docker build
-      shell: "docker run -e API_KEY={{ API_KEY }} -p 8080:8080 -d riotgames:dev"
+      shell: "echo 'docker build'"
       become: true
