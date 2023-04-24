@@ -24,6 +24,5 @@
         clone: yes
 
     - name: set environment variable
-      ansible.builtin.shell:
-        echo "export RIOT_API_KEY="{{ lookup('env', 'RIOT_GAMES_API') }}""
+      shell: "RIOT_GAMES_API={{ lookup('env', 'RIOT_GAMES_API') }} env | egrep MY_ENV"
     - debug: msg="{{ lookup('env', 'RIOT_GAMES_API') }}"
