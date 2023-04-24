@@ -27,7 +27,7 @@
         update: yes
 
     - name: docker-compose build
-      shell: "docker-compose build"
+      command: "docker-compose build"
       become: true
 
     - name: docker-compose up
