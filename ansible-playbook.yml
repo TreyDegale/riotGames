@@ -24,5 +24,5 @@
         clone: yes
 
     - name: set environment variable
-      shell: "export NEW_ENV={{ lookup('env', 'RIOT_GAMES_API') }}"
+      shell: "export NEW_ENV=\"{{ lookup('env', 'RIOT_GAMES_API') }}\""
     - debug: msg="{{ lookup('env', 'RIOT_GAMES_API') }}"
