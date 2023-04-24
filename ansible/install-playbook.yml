@@ -15,9 +15,9 @@
         update_cache: yes
       become: true
 
-    - name: install pip3
+    - name: install pip2
       ansible.builtin.yum:
-        name: python3-pip
+        name: python2-pip
         state: present
         update_cache: yes
       become: true
