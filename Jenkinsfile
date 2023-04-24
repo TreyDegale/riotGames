@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    environment {
+        RIOT_GAMES_API = credentials('RIOT_GAMES_API')
+    }
     stages {
         stage('ansible-playbook') {
             steps {
