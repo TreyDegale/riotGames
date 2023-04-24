@@ -1,7 +1,9 @@
 ---
 - hosts: dev
   vars:
-    API_KEY: "{{ lookup('env', 'RIOT_GAMES_API') }}"
+    os_environment:
+      - key: API_KEY 
+        value : "{{ lookup('env', 'RIOT_GAMES_API') }}"
   tasks:
     - name: ensure git pkg installed
       ansible.builtin.yum:
@@ -9,6 +11,17 @@
         state: present
         update_cache: yes
       become: true
+
+    - name: populate /etc/environment
+      lineinfile:
+
+        path: "/etc/environment"
+        state: present
+        regexp: "^{{ item.key }}="
+        line: "{{ item.key }}={{ item.value}}"
+
+      with_items: "{{ os_environment }}"
+      become: yes
     
     - name: install docker
       ansible.builtin.yum:
