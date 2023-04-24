@@ -18,7 +18,7 @@
     - name: install docker-compose
       ansible.builtin.pip:
         name: docker-compose
-        state: present
+        executable: pip3
 
     - name: install gunicorn
       ansible.builtin.pip:
