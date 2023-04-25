@@ -46,27 +46,25 @@ resource "aws_security_group" "flask_app_sg" {
 }
 
 resource "aws_instance" "flask_app" {
-  #ami                   = "ami-062f7200baf2fa504"
   ami                    = data.aws_ami.aws_linux_2_latest.id
   key_name               = "flask-app-ec2.pem"
   instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.flask_app_sg]
+  vpc_security_group_ids = ["aws_security_group.flask_app_sg"]
 
-  //subnet_id              = "subnet-3f7b2563"
   subnet_id = data.aws_subnets.default_subnets.ids[0]
 
-  connection {
-    type        = "ssh"
-    host        = self.public_ip
-    user        = "ec2-user"
-    private_key = file(var.aws_key_pair)
-  }
+  # connection {
+  #   type        = "ssh"
+  #   host        = self.public_ip
+  #   user        = "ec2-user"
+  #   private_key = file(var.aws_key_pair)
+  # }
 
-#   provisioner "remote-exec" {
-#     inline = [
-#       "sudo yum install httpd -y",
-#       "sudo service httpd start",
-#       "echo Welcome to in28minutes - Virtual Server is at ${self.public_dns} | sudo tee /var/www/html/index.html"
-#     ]
-#   }
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "sudo yum install httpd -y",
+  #     "sudo service httpd start",
+  #     "echo Welcome to in28minutes - Virtual Server is at ${self.public_dns} | sudo tee /var/www/html/index.html"
+  #   ]
+  # }
 }
