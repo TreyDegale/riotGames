@@ -2,23 +2,34 @@ pipeline {
     agent any
 
     environment {
-        RIOT_API_KEY = credentials('RIOT_GAMES_API')
+        pem_file = credentials('flask-app-pem')
+        AWS_ACCESS_KEY = credentials('AWS_ACCESS_KEY')
+        AWS_SECRET_KEY = credentials('AWS_SECRET_KEY')
+        RIOT_GAMES_API = credentials('RIOT_GAMES_API')
     }
     stages {
-        stage('Build') {
+        stage('terraform init') {
             steps {
-                sh 'docker build -t riotgames --target dev .'
-                sh 'docker build -t riotgames:test --target test .'
+                dir('terraform') {
+                    sh 'terraform init'
+                }
             }
         }
-        stage('Run') {
+        stage('terraform apply') {
             steps {
-                sh 'docker run -e API_KEY=$RIOT_API_KEY -p 8000:8000 --rm riotgames'
+                dir('terraform') {
+                    sh 'terraform apply -var aws_key_pair=${pem_file} -var aws_access_key=${AWS_ACCESS_KEY} -var aws_secret_key=${AWS_SECRET_KEY} -auto-approve'
+                }
             }
         }
-        stage('Test') {
+        stage('install playbook') {
             steps {
-                sh 'docker run -e API_KEY=$RIOT_API_KEY --rm riotgames:test'
+                ansiblePlaybook credentialsId: 'linux-ami2', disableHostKeyChecking: true, installation: 'Ansible', inventory: './ansible/ansible.inv', playbook: './ansible/install-playbook.yml'
+            }
+        }
+        stage('main playbook') {
+            steps {
+                ansiblePlaybook credentialsId: 'linux-ami2', disableHostKeyChecking: true, installation: 'Ansible', inventory: './ansible/ansible.inv', playbook: './ansible/ansible-playbook.yml', vaultCredentialsId: 'RIOT_GAMES_API'
             }
         }
     }
