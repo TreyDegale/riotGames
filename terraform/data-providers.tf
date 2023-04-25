@@ -5,15 +5,15 @@ data "aws_subnets" "default_subnets" {
   }
 }
 
-data "aws_ami" "ubuntu" {
+data "aws_ami" "aws_linux_2_latest" {
   most_recent = true
   owners      = ["amazon"]
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["amzn2-ami-hvm-*"]
   }
 }
 
-data "aws_ami_ids" "aws_ubuntu_latest_ids" {
+data "aws_ami_ids" "aws_linux_ami_2_latest_ids" {
   owners = ["amazon"]
 }

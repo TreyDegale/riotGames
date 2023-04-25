@@ -47,10 +47,10 @@ resource "aws_security_group" "flask_app_sg" {
 
 resource "aws_instance" "flask_app" {
   #ami                   = "ami-062f7200baf2fa504"
-  ami                    = data.aws_ami.ubuntu.id
+  ami                    = data.aws_ami.linux_ami_2.id
   key_name               = "flask-app-ec2.pem"
   instance_type          = "t2.micro"
-  vpc_security_group_ids = ["aws_security_group.flask_app_sg"]
+  vpc_security_group_ids = ["aws_security_group.flask_app_sg.id"]
 
   //subnet_id              = "subnet-3f7b2563"
   subnet_id = data.aws_subnets.default_subnets.ids[0]
