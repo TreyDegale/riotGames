@@ -22,8 +22,6 @@ pipeline {
                 }
             }
         }
-    }
-    stages {
         stage('install playbook') {
             steps {
                 ansiblePlaybook credentialsId: 'linux-ami2', disableHostKeyChecking: true, installation: 'Ansible', inventory: './ansible/ansible.inv', playbook: './ansible/install-playbook.yml'
