@@ -6,7 +6,7 @@ pipeline {
         // AWS_ACCESS_KEY = credentials('AWS_ACCESS_KEY')
         // AWS_SECRET_KEY = credentials('AWS_SECRET_KEY')
         RIOT_GAMES_API = credentials('RIOT_GAMES_API')
-    // }
+    }
     // stages {
     //     stage('terraform init') {
     //         steps {
