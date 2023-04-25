@@ -28,10 +28,10 @@
 
     - name: docker-compose build
       community.docker.docker_compose:
-        project_src: ~/riotGames-ec2-final-steps
+        project_src: /home/ec2-user/riotGames-ec2-final-steps
         build: yes
 
     - name: docker-compose up
       community.docker.docker_compose:
-        project_src: ~/riotGames-ec2-final-steps
+        project_src: /home/ec2-user/riotGames-ec2-final-steps
         state: present
