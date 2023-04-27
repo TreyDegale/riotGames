@@ -1,0 +1,3 @@
+# ec2 public IP
+[dev]
+54.91.120.44 ansible_user=ec2-user
