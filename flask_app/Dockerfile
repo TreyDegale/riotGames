@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.7-alpine as base
 
 FROM base as dev
 WORKDIR /app/
