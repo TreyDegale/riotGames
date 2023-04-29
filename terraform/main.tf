@@ -4,70 +4,23 @@ provider "aws" {
   secret_key = var.aws_secret_key
 }
 
-resource "aws_default_vpc" "default" {
-
-}
-
-resource "aws_security_group" "flask_app_sg" {
-  name = "flask_app_sg"
-  vpc_id = aws_default_vpc.default.id
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = -1
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
+resource "awslightsail_container_service" "flask_app" {
+  name = "flask-app"
+  power = "nano"
+  scale = 1
   tags = {
-    name = "flask_app_sg"
+    version = "1.0.0"
   }
 }
 
-resource "aws_instance" "flask_app" {
-  ami                    = data.aws_ami.aws_linux_2_latest.id
-  instance_type          = "t2.micro"
-  key_name               = "flask-app-ec2"
-  vpc_security_group_ids = [ "sg-0bbe3a13003cb2f1d" ]
-
-  subnet_id = data.aws_subnets.default_subnets.ids[0]
-
-  tags = {
-    Name = "flask_app"
+resource "awslightsail_container_service_deployment" "flask_app_deployment" {
+  container_service_name = awslightsail_container_service.flask_app.name
+  containers {
+    image = "treydegale/flask_app:0.0.1"
+    command = ["python", "scripts/app.py"]
+    ports {
+      port = 80
+      protocol = "HTTP"
+    }
   }
-  # connection {
-  #   type        = "ssh"
-  #   host        = self.public_ip
-  #   user        = "ec2-user"
-  #   private_key = file(var.aws_key_pair)
-  # }
-
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "sudo yum install httpd -y",
-  #     "sudo service httpd start",
-  #     "echo Welcome to in28minutes - Virtual Server is at ${self.public_dns} | sudo tee /var/www/html/index.html"
-  #   ]
-  # }
 }
