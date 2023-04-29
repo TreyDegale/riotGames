@@ -12,7 +12,11 @@ A second one to print the champion with the highest base attack damage stat
 import requests
 import os
 
-api_key = os.environ["API_KEY"]
+# Environment variable for the API key, 50/50 chance..
+# api_key = os.environ["API_KEY"]
+
+# Dummy API key
+api_key = "RGAPI-0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b"
 
 url = "https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?&api_key=" + api_key
 
