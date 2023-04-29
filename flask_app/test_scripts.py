@@ -1,4 +1,4 @@
-from flask_app.scripts import retrieveChampionData, riotGames
+from scripts import retrieveChampionData, riotGames
 
 def test_getChampionData():
     assert retrieveChampionData.aatrox['name'] == "Aatrox"
