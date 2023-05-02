@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 resource "aws_lightsail_container_service" "flask_app" {
-  name = "flask-app"
+  name = "flask-app-v1"
   power = "nano"
   scale = 1
   tags = {
