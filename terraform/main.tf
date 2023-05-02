@@ -29,12 +29,12 @@ resource "aws_lightsail_container_service_deployment_version" "flask_app_deploym
     container_port = 80
 
     health_check {
-      healthy_threshold = 2
+      healthy_threshold   = 2
       unhealthy_threshold = 2
-      timeout_seconds = 2
-      interval_seconds = 5
-      path = "/"
-      success_codes = "200"
+      timeout_seconds     = 2
+      interval_seconds    = 5
+      path                = "/"
+      success_codes       = "200-499"
     }
   }
 
