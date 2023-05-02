@@ -47,10 +47,10 @@ pipeline {
                 }
             }
         }
-        stage('terraform plan') {
+        stage('terraform apply') {
             steps {
                 dir('terraform') {
-                    sh 'terraform plan -var aws_access_key=${AWS_ACCESS_KEY} -var aws_secret_key=${AWS_SECRET_KEY}'
+                    sh 'terraform apply -var aws_access_key=${AWS_ACCESS_KEY} -var aws_secret_key=${AWS_SECRET_KEY}'
                 }
             }
         }
