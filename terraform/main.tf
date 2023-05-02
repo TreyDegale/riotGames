@@ -13,14 +13,16 @@ resource "awslightsail_container_service" "flask_app" {
   }
 }
 
-resource "awslightsail_container_service_deployment" "flask_app_deployment" {
-  container_service_name = awslightsail_container_service.flask_app.name
-  containers {
-    image = "treydegale/flask_app:0.0.1"
-    command = ["python", "scripts/app.py"]
-    ports {
-      port = 80
-      protocol = "HTTP"
+resource "awslightsail_container_service_deployment_version" "flask_app_deployment" {
+  container {
+    container_name = "flask_app"
+
+    image = "treydegale/flask_app:0.0.2"
+    
+    ports = {
+      80 = "HTTP"
     }
   }
+
+  service_name = awslightsail_container_service.flask_app.name
 }

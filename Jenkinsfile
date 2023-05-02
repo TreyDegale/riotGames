@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         DOCKER_PASS = credentials('docker_ps')
+        AWS_ACCESS_KEY = credentials('AWS_ACCESS_KEY')
+        AWS_SECRET_KEY = credentials('AWS_SECRET_KEY')
     }
 
     stages {
@@ -29,6 +31,27 @@ pipeline {
             steps {
                 sh 'docker login -u treydegale -p $DOCKER_PASS'
                 sh 'docker push treydegale/flask_app:0.0.2'
+            }
+        }
+        stage('terraform fmt') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform fmt'
+                }
+            }
+        }
+        stage('terraform init') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform init'
+                }
+            }
+        }
+        stage('terraform plan') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform plan -var aws_access_key=${AWS_ACCESS_KEY} -var aws_secret_key=${AWS_SECRET_KEY}'
+                }
             }
         }
     }
