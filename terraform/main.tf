@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 resource "aws_lightsail_container_service" "flask_app" {
-  name = "flask-app-v1"
+  name = "Flask-app"
   power = "nano"
   scale = 1
   tags = {
@@ -15,7 +15,7 @@ resource "aws_lightsail_container_service" "flask_app" {
 
 resource "aws_lightsail_container_service_deployment_version" "flask_app_deployment" {
   container {
-    container_name = "flask-app-v1"
+    container_name = "Flask-app"
 
     image = "treydegale/flask_app:0.0.2"
     
@@ -25,7 +25,7 @@ resource "aws_lightsail_container_service_deployment_version" "flask_app_deploym
   }
 
   public_endpoint {
-    container_name = "flask-app-v1"
+    container_name = "Flask-app"
     container_port = 80
 
     health_check {
