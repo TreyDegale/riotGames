@@ -38,5 +38,6 @@ resource "aws_lightsail_container_service_deployment_version" "flask_app_deploym
     }
   }
 
-  service_name = aws_lightsail_container_service.flask_application.name
+  # service_name = aws_lightsail_container_service.flask_application.name
+  service_name = "flask-application"
 }
