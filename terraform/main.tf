@@ -4,7 +4,7 @@ provider "aws" {
   secret_key = var.aws_secret_key
 }
 
-resource "awslightsail_container_service" "flask_app" {
+resource "aws_lightsail_container_service" "flask_app" {
   name = "flask-app"
   power = "nano"
   scale = 1
@@ -13,7 +13,7 @@ resource "awslightsail_container_service" "flask_app" {
   }
 }
 
-resource "awslightsail_container_service_deployment_version" "flask_app_deployment" {
+resource "aws_lightsail_container_service_deployment_version" "flask_app_deployment" {
   container {
     container_name = "flask_app"
 
