@@ -38,6 +38,9 @@ This application retrieves information from the <b>RiotGames</b> API, slightly m
 <h2>ec2-final-steps</h2>
 <p>The final branch - refactoring to two ansible playbooks, one for installation and another for running the application. In addition to introducing nginx which is run in a Docker container and so a docker-compose.yml was added as the final piece.</p>
 
+<h2>lightsail</h2>
+<p>Exploring an alternative approach to the project, deploying a containerised flask app, on AWS Lightsail Container Service rather than AWS EC2 instance. During research for the EC2 implementation I came across Lightsail and it was the perfect use case for the project, whilst I went on with the EC2 approach, after completion I explored the alternative approach with AWS Lightsail</p>
+
 </br><h1>Images</h1>
 <h2>AWS EC2 Endpoint<h2>
 <img src="./images/EC2-endpoint.png">
